@@ -1,24 +1,20 @@
 // add, commit, push 해주기!!! /dev/stdin
 let fs = require("fs");
-let input = fs.readFileSync("./data.txt").toString().trim().split("\n");
-
-let num = Number(input.shift());
-let list = input
-  .shift()
-  .split(" ")
+let input = fs
+  .readFileSync("./data.txt")
+  .toString()
+  .split("\n")
   .map((v) => +v);
 
-let max = list[0];
-let min = list[0];
+let max = input[0];
+let count = 0;
 
-for (let i = 0; i < num; i++) {
-  if (max < list[i]) {
-    max = list[i];
-  }
-
-  if (min > list[i]) {
-    min = list[i];
+for (let i = 1; i < input.length; i++) {
+  if (max < input[i]) {
+    max = input[i];
+    count = i;
   }
 }
 
-console.log(min, max);
+console.log(max);
+console.log(count + 1);
