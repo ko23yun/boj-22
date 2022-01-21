@@ -2,16 +2,23 @@
 let fs = require("fs");
 let input = fs.readFileSync("./data.txt").toString().trim().split("\n");
 
-let num = input.length - 1;
+let num = Number(input.shift());
+let list = input
+  .shift()
+  .split(" ")
+  .map((v) => +v);
 
-let i = 0;
-let answer = "";
+let max = list[0];
+let min = list[0];
 
-while (i < num) {
-  let listNum = input[i].split(" ").map((v) => +v);
-  answer += listNum[0] + listNum[1] + "\n";
+for (let i = 0; i < num; i++) {
+  if (max < list[i]) {
+    max = list[i];
+  }
 
-  i++;
+  if (min > list[i]) {
+    min = list[i];
+  }
 }
 
-console.log(answer.trim());
+console.log(min, max);
